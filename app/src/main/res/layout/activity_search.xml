@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_search"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.eae.kipper.jung.gabriel.mitgliederverwaltung.SearchActivity">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Name zum Suchen eingeben"
+                android:ems="10"
+                android:id="@+id/name_search"
+                android:layout_toStartOf="@+id/Button_Suchen" />
+
+            <Button
+                android:text="@string/button_suchen"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/Button_Suchen"
+                android:layout_alignBottom="@+id/name_search"
+                android:textAlignment="center"
+                android:onClick="searchContact"/>
+        </TableRow>
+    </TableLayout>
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="100dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="@string/label_name"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:id="@+id/Label_Search_Name" />
+
+            <TextView
+                android:text="@string/hint_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Text_Search_Name" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="@string/label_nummer_privat"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:id="@+id/Label_Search_Numemr_Privat" />
+
+            <TextView
+                android:text="@string/hint_nummer_privat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Text_Search_Nummer_Privat" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:text="@string/label_nummer_mobil"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:id="@+id/Label_Search_Numemr_Mobil" />
+
+            <TextView
+                android:text="@string/hint_nummer_mobil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Text_Search_Nummer_Mobil" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:text="@string/label_email"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:id="@+id/Label_Search_Email" />
+
+            <TextView
+                android:text="@string/hint_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Text_Search_Email" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:text="@string/label_strasse"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:id="@+id/Label_Search_Strasse" />
+
+            <TextView
+                android:text="@string/hint_strasse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Text_Search_Strasse" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:text="@string/label_plz"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:id="@+id/Label_Search_Plz" />
+
+            <TextView
+                android:text="@string/hint_plz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Text_Search_Plz" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:text="@string/label_ort"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:id="@+id/Label_Search_Ort" />
+
+            <TextView
+                android:text="@string/hint_ort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Text_Search_Ort" />
+        </TableRow>
+    </TableLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:text="@string/button_mitglied_loschen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Button_Loschen"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="deleteContact"/>
+    </RelativeLayout>
+
+</LinearLayout>
