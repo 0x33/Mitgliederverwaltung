@@ -45,7 +45,7 @@ public class UserDbHelper extends SQLiteOpenHelper {
 
     public Cursor getInformations(SQLiteDatabase db){
         Cursor cursor;
-        String[] projections = {UserContract.NewUserInfo.USER_NAME};
+        String[] projections = {UserContract.NewUserInfo.USER_NAME, UserContract.NewUserInfo.USER_STRASSE, UserContract.NewUserInfo.USER_PLZ, UserContract.NewUserInfo.USER_ORT};
 
         //cursor = db.query(table name, projection, selection, selection args, group rows, filter by row groups, sort order)
         cursor = db.query(UserContract.NewUserInfo.TABLE_NAME, projections, null, null, null, null, null);
@@ -60,6 +60,29 @@ public class UserDbHelper extends SQLiteOpenHelper {
         String [] selection_args = {user_name};
         Cursor cursor = sqLiteDatabase.query(UserContract.NewUserInfo.TABLE_NAME, projections, selection, selection_args, null, null, null);
         return cursor;
+    }
+
+    public void deleteInformation(String user_name, SQLiteDatabase sqLiteDatabase){
+        String selection = UserContract.NewUserInfo.USER_NAME + " LIKE ?";
+        String [] selection_args = {user_name};
+        sqLiteDatabase.delete(UserContract.NewUserInfo.TABLE_NAME, selection, selection_args);
+    }
+
+    public int updateInformation(String old_name, String new_name, String new_nummerp, String new_nummerm, String new_email, String new_strasse, String new_plz, String new_ort, SQLiteDatabase sqLiteDatabase){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(UserContract.NewUserInfo.USER_NAME, new_name);
+        contentValues.put(UserContract.NewUserInfo.USER_NUMMERP, new_nummerp);
+        contentValues.put(UserContract.NewUserInfo.USER_NUMMERM, new_nummerm);
+        contentValues.put(UserContract.NewUserInfo.USER_EMAIL, new_email);
+        contentValues.put(UserContract.NewUserInfo.USER_STRASSE, new_strasse);
+        contentValues.put(UserContract.NewUserInfo.USER_PLZ, new_plz);
+        contentValues.put(UserContract.NewUserInfo.USER_ORT, new_ort);
+
+        String selection = UserContract.NewUserInfo.USER_NAME + " LIKE ?";
+        String[] selection_args = {old_name};
+        int count = sqLiteDatabase.update(UserContract.NewUserInfo.TABLE_NAME, contentValues, selection, selection_args);
+        return count;
+
     }
 
     @Override

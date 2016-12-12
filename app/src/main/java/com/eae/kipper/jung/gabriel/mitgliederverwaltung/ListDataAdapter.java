@@ -21,7 +21,7 @@ public class ListDataAdapter extends ArrayAdapter {
     }
 
     static class LayoutHandler{
-        TextView NAME;
+        TextView NAME, STRASSE, PLZ, ORT;
     }
 
     @Override
@@ -50,6 +50,10 @@ public class ListDataAdapter extends ArrayAdapter {
             row = layoutInflater.inflate(R.layout.row_layout, parent, false);
             layoutHandler = new LayoutHandler();
             layoutHandler.NAME = (TextView)row.findViewById(R.id.text_user_name);
+            layoutHandler.STRASSE = (TextView)row.findViewById(R.id.text_user_strasse);
+            layoutHandler.PLZ = (TextView)row.findViewById(R.id.text_user_plz);
+            layoutHandler.ORT = (TextView)row.findViewById(R.id.text_user_ort);
+
             row.setTag(layoutHandler);
         }else{
             layoutHandler = (LayoutHandler)row.getTag();
@@ -57,6 +61,9 @@ public class ListDataAdapter extends ArrayAdapter {
 
         DataProvider dataProvider = (DataProvider)this.getItem(position);
         layoutHandler.NAME.setText(dataProvider.getName());
+        layoutHandler.STRASSE.setText(dataProvider.getStrasse());
+        layoutHandler.PLZ.setText(dataProvider.getPlz());
+        layoutHandler.ORT.setText(dataProvider.getOrt());
 
         return row;
     }

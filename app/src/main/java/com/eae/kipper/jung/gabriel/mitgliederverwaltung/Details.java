@@ -3,18 +3,23 @@ package com.eae.kipper.jung.gabriel.mitgliederverwaltung;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Details extends AppCompatActivity {
 
     TextView nameText, nummerpText, nummermText, emailText, strasseText, plzText, ortText;
+    UserDbHelper userDbHelper;
+    SQLiteDatabase sqLiteDatabase;
+    String search_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +59,6 @@ public class Details extends AppCompatActivity {
     }
 
     private void deleteContact(){
-
-        //Kontakt löschen
-
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle(R.string.confirm_title);
         alertDialog.setMessage(R.string.confirm_message);
@@ -70,6 +72,11 @@ public class Details extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),
                                 R.string.toast_loschen,
                                 Toast.LENGTH_LONG).show();
+                        userDbHelper = new UserDbHelper(getApplicationContext());
+                        sqLiteDatabase = userDbHelper.getReadableDatabase();
+                        userDbHelper.deleteInformation(search_name, sqLiteDatabase);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
                     }
                 });
 

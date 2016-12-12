@@ -1,17 +1,24 @@
 package com.eae.kipper.jung.gabriel.mitgliederverwaltung;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,16 +30,22 @@ public class MainActivity extends AppCompatActivity {
     ListDataAdapter listDataAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         add = (FloatingActionButton)findViewById(R.id.foating_add);
         add.setOnClickListener(handler);
 
-
-        //test
         listView = (ListView)findViewById(R.id.list_view);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), Details.class);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_LONG).show();
+            }
+        });
 
         listDataAdapter = new ListDataAdapter(getApplicationContext(), R.layout.row_layout);
         listView.setAdapter(listDataAdapter);
@@ -43,10 +56,13 @@ public class MainActivity extends AppCompatActivity {
 
         if(cursor.moveToFirst()){                       //return true wenn Datensatz vorhanden
             do{
-                String name;
+                String name, strasse, plz, ort;
                 name = cursor.getString(0);
+                strasse = cursor.getString(1);
+                plz = cursor.getString(2);
+                ort = cursor.getString(3);
 
-                DataProvider dataProvider = new DataProvider(name);
+                DataProvider dataProvider = new DataProvider(name, strasse, plz, ort);
                 listDataAdapter.add(dataProvider);
 
             }while(cursor.moveToNext());                //return true wenn noch ein Datensatz da ist
@@ -75,14 +91,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.ITEM_SUCHEN:
-                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Search.class);
                 startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
 }
