@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         add = (FloatingActionButton)findViewById(R.id.foating_add);
         add.setOnClickListener(handler);
 
+
+        //test
         listView = (ListView)findViewById(R.id.list_view);
 
         listDataAdapter = new ListDataAdapter(getApplicationContext(), R.layout.row_layout);
